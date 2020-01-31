@@ -6,6 +6,9 @@ let welcomeEl = document.getElementById("welcome");
 let instructionsEl = document.getElementById("instructions");
 let startButtonEl = document.getElementById("startButton");
 let questionsDivEl = document.getElementById("questionsDiv");
+let titleDivEl = document.getElementById("titleDiv");
+let answerChoicesEl = document.getElementById("answerChoices");
+
 
 
 //On load function
@@ -27,7 +30,7 @@ startButtonEl.addEventListener("click", function (event) {
     gameStartDiv.style.display = "none";
     questionsDiv.style.display = "block";
     setTime();
-    showQuestion();
+    setNextQuestion();
 });
 
 function setTime() {
@@ -52,9 +55,45 @@ function endGame() {
 
 }
 
-function showQuestion() {
-    for(let i=0;i<questions.length;i++) {
-        console.log(questions[i]);
+function setNextQuestion() {
+    for (let i = 0; i < questions.length; i++) {
+        titleDivEl.textContent = (i + 1) + '. ' + questions[i].title;
+        questions[i].choices.forEach(choice => {
+            const choiceEl = document.createElement("li");
+            choiceEl.textContent = choice;
+            titleDivEl.appendChild(choiceEl);
+            const resultEl = document.createElement("p");
+
+        })
+        choiceEl.addEventListener("click", function (event) {
+            if (event.target.matches("li")) {
+                if (choices[event.target.parentElement.id] === questions[i].answer) {
+                    resultEl.textContent = "correct!"
+                }
+                else {
+                    resultEl.textContent = "wrong!"
+                }
+            }
+        })
     }
 }
 
+
+// function checkAnswer() {
+//     choiceEl.addEventListener("click", function(event) {
+//         if(event.target.matches("li")) {
+//             if (choices[event.target.parentElement.id] === questions[i].answer){
+//                 resultEl.textContent = "correct!"
+//             }
+//             else {
+//                 resultEl.textContent = "wrong!"
+//             }
+//           }
+//     })
+// }
+
+
+// var div = document.createElement('div');
+// div.textContent = "Sup, y'all?";
+// div.setAttribute('class', 'note');
+// document.body.appendChild(div);

@@ -10,7 +10,7 @@ const questions = [
       answer: "()"
     },
     {
-      title: "What will this statement return: console.log('7' == 7)",
+      title: "What will this statement return: console.log('7' == 7)?",
       choices: ["true", "false", "maybe", "depends"],
       answer: "true"
     }
