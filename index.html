@@ -15,7 +15,7 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">View High Score</a>
+    <a class="navbar-brand" href="#" id ="viewHighScore">View High Score</a>
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarText">
       <ul class="nav justify-content-end">
@@ -73,19 +73,58 @@
   <div class="container">
     <!-- Game start div displaying the game instructions and start button -->
     <div class="jumbotron" id="gameStartDiv">
-      <h1 class="display-4" id="welcome"></h1>
-      <p class="lead" id="instructions"></p>
+      <h1 class="display-4" id="welcome">Welcome to Code Quiz!</h1>
+      <p class="lead" id="instructions">"Try to answer the following code related questions in the 90 seconds time
+        limit. Keep in mind that the incorrect answers will penalize your time by 5 seconds"</p>
       <hr class="my-4">
-      <a class="btn btn-primary" id="startButton" href="#"></a>
+      <a class="btn btn-primary" id="startButton" href="#">Start Quiz!</a>
     </div>
 
-    <!-- Questions Div -->
+    <!-- Questions Div displaying question title and answer choices -->
     <div class="jumbotron" id="questionsDiv">
       <!-- title Div -->
-      <div id="titleDiv"></div>
+      <div id="questionDiv">
+        <h2 id="question">question</h2>
+      </div>
       <!-- choices div -->
       <div id="answerChoices">
-        
+        <ul>
+      <li><label class = "choice"><input type="radio" name ="choice" value ="1"><span id="choice1"></span></label></li>
+      <li><label class = "choice"><input type="radio" name ="choice" value ="2"><span id="choice2"></span></label></li>
+      <li><label class = "choice"><input type="radio" name ="choice" value ="3"><span id="choice3"></span></label></li>
+      <li><label class = "choice"><input type="radio" name ="choice" value ="4"><span id="choice4"></span></label></li>
+    </ul>
+      </div>
+      <button class="btn btn-primary" id="nextButton">Next</button>
+      <div id="msg">message</div>
+    </div>
+
+    <!-- Results Display -->
+    <div class="jumbotron" id="resultsDiv">
+    
+      
+        <h2 id="done">All done!</h2>
+        <h3 id="score">You scored:</h3><span id="score"></span>
+        <h3 id="initials">Enter your initials here:</h3>
+        <form>
+          <div class="row">
+            <div class="col-md-2">
+              <input type="text" class="form-control" placeholder="Initials">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <!-- High scores Display -->
+    <div class="jumbotron" id="highScoresDiv">
+      
+        <h2 id="done">High Scores</h2>
+        <div id="displayHighScore"></div>
+        <button class="btn btn-primary" id="highScoresBtn">view High Scores</button>
+        <button class="btn btn-secondary">Clear Highscores</button>
+      
+    </div>
   </div>
 
 

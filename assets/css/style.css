@@ -1,0 +1,31 @@
+body {
+    padding:0;
+    margin:0;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+background-color: aliceblue;
+}
+#gameStartDiv {
+    
+    margin: 20px;
+}
+#questionsDiv {
+    box-shadow: 0 0 5px 1px;
+    margin: 20px;
+}
+.btn {
+    margin: 10px;
+}
+#startButton, #nextButton {
+   
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 10px;
+}
+
+#result {
+    visibility: hidden;
+    margin-top: 20px;
+    font-weight: 700;
+    height: 1.2em;
+    font-size: 1.2em;
+  }
