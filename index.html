@@ -18,7 +18,7 @@
     <a class="navbar-brand" href="#" id="viewHighScore">View High Score</a>
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarText">
-      <ul class="nav justify-content-end">
+      <ul class="nav justify-content-end"id="timer">
         <li class="nav-item">
           Time left:
         </li>
@@ -104,11 +104,14 @@
 
       <h2 id="done">All done!</h2>
       <h3 id="totalScore"></h3>
-      <h3 id="initials">Enter your initials here:</h3>
+      
+    
       <form>
         <div class="row">
           <div class="col-md-2">
-            <input type="text" id="initialsInput" class="form-control" placeholder="Initials">
+            
+            <label for="initials">Enter initials</label>
+            <input type="text" name="initials" id="initialsInput" placeholder="AB" />
           </div>
         </div>
         <button type="submit" id = "submit" class="btn btn-primary">Submit</button>
@@ -121,6 +124,9 @@
 
       <h2 id="done">High Scores</h2>
       <div id="displayHighScore"></div>
+      
+        <p><strong> <span id="user-initials-score"></span><strong></p>
+     
       <button class="btn btn-primary" id="highScoresBtn">view High Scores</button>
       <button class="btn btn-secondary">Clear Highscores</button>
       <button class="btn btn-info" id="restartButton">Restart Quiz</button>
