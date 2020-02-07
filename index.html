@@ -74,8 +74,8 @@
     <!-- Game start div displaying the game instructions and start button -->
     <div class="jumbotron" id="gameStartDiv">
       <h1 class="display-4" id="welcome">Welcome to Code Quiz!</h1>
-      <p class="lead" id="instructions">"Try to answer the following code related questions in the 90 seconds time
-        limit. Keep in mind that the incorrect answers will penalize your time by 5 seconds"</p>
+      <p class="lead" id="instructions">Try to answer the following code related questions in the 90 seconds time
+        limit. Keep in mind that the incorrect answers will penalize your time by 5 seconds</p>
       <hr class="my-4">
       <a class="btn btn-primary" id="startButton" href="#">Start Quiz!</a>
     </div>
@@ -94,8 +94,8 @@
 
       <!-- answer choices div -->
       <div id="answerChoices"></div>
-      <button class="btn btn-primary" id="nextButton">Next</button>
-      <div id="msg"></div>
+     
+      
     </div>
 
     <!-- Results Display -->
@@ -103,15 +103,16 @@
 
 
       <h2 id="done">All done!</h2>
-      <h3 id="score">You scored:</h3><span id="score"></span>
+      <h3 id="totalScore"></h3>
       <h3 id="initials">Enter your initials here:</h3>
       <form>
         <div class="row">
           <div class="col-md-2">
-            <input type="text" class="form-control" placeholder="Initials">
+            <input type="text" id="initialsInput" class="form-control" placeholder="Initials">
           </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" id = "submit" class="btn btn-primary">Submit</button>
+        <div id="msg"></div>
       </form>
     </div>
 
@@ -122,6 +123,7 @@
       <div id="displayHighScore"></div>
       <button class="btn btn-primary" id="highScoresBtn">view High Scores</button>
       <button class="btn btn-secondary">Clear Highscores</button>
+      <button class="btn btn-info" id="restartButton">Restart Quiz</button>
 
     </div>
   </div>

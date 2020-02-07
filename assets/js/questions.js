@@ -21,7 +21,7 @@ const questions = [
     },
     {
       question: "Where is the correct place to insert a JavaScript?",
-      choices: ["The <body> section", "The <head> section", "<Both the <body> section and <head> section", "Neither of the above"],
+      choices: ["The <body> section", "The <head> section", "<Both the <body> section and <head> section", "None of the above"],
       answer: "The <body> section"
     },
     {

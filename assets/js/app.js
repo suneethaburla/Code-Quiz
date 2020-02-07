@@ -16,14 +16,21 @@ let choiceButton4 = $("#choiceButton4");
 let answerChoices = $("#answerChoices");
 let choiceButton =$(".choiceButton");
 let resultsDiv = $("#resultsDiv");
-let msg = $("#msg");
+let totalScore = $("#totalScore");
 let highScoresDiv = $("#highScoresDiv");
+let displayHighScore = $("#displayHighScore");
 let highScoresBtn = $("#highScoresBtn");
+let initialsInput = $("#initialsInput");
+let submitButton = $("#submit");
+let msg = $("#msg");
+let restartButton = $("#restartButton");
+
 
 // Initializing the variables
-let score = 0;
-let secondsLeft = 90;
-let highScore = 0;
+let score;
+let allottedTime =30;
+let secondsLeft;
+let highScore;
 let questionIndex;
 let totQuestions = questions.length;
 
@@ -42,6 +49,8 @@ startButton.click(function () {
     resultsDiv.hide();
     highScoresDiv.hide();
     gameStartDiv.hide();
+    secondsLeft=30;
+    score=0;
     questionIndex = 0;
     startTimer();
     setNextQuestion();
@@ -49,19 +58,27 @@ startButton.click(function () {
 
 //Start Timer function
 function startTimer() {
-    var timerInterval = setInterval(function () {
+    let timerInterval = setInterval(function () {
+    
+
         secondsLeft--;
         time.text(secondsLeft);
 
-        if (secondsLeft === 0) {
+        if (secondsLeft < 0) {
             clearInterval(timerInterval);
             endGame();
         }
 
     }, 1000);
 }
-function endGame() {
-    time.text("0");
+
+function decrementTimer() {
+    secondsLeft=secondsLeft-5;
+
+}
+function stopTimer() {
+    secondsLeft = 0;
+    time.text(secondsLeft);
 
 }
 
@@ -78,9 +95,101 @@ function showQuestion(question) {
         
 }
 
-$(".choiceButton").on("click", function(){
-    let ans = this;
-    console.log(ans);
-   ans.text();
+choiceButton.on("click", function(){
+    let clickedEl = $(this);
+    userChoice = $(clickedEl).text();
+    checkAnswer();
+   }
     
-  });
+  );
+
+  function checkAnswer(timerInterval) {
+    if (userChoice===questions[questionIndex].answer) {
+        alert("correct");
+        score++
+        
+    }
+    else{
+     alert("wrong");
+     decrementTimer();
+     
+    }
+    timeLeft=secondsLeft;
+    timeTaken=allottedTime-timeLeft;
+    questionIndex++
+    if (questionIndex<totQuestions){
+        setNextQuestion();
+    }
+    else {
+        endGame();
+    }
+}
+
+function endGame() {
+    questionsDiv.hide();
+    highScoresDiv.hide();
+    gameStartDiv.hide();
+    resultsDiv.show();
+    stopTimer();
+    totalScore.text(`You answered ${score} out of ${totQuestions} correct in ${timeTaken} seconds`);
+
+}
+
+function saveScore() {
+    let highScore = score;
+    localStorage.setItem("highScore", highScore);
+
+}
+
+
+  
+submitButton.on("click", function(event){
+  event.preventDefault();
+
+  let initialsInput = $("#initialsInput").value;
+  
+  if (initialsInput === "") {
+    displayMessage("error", "Initials cannot be blank");
+  } else {
+    displayMessage("success", "Thank you for taking the quiz!");
+
+  // Save email and password to localStorage and render the last registered.
+  localStorage.setItem("initials", initialsInput);
+  localStorage.setItem("highScore", highScore);
+  }
+  highScoresDiv.show();
+  resultsDiv.hide();
+  questionsDiv.hide();
+  gameStartDiv.hide();
+});
+
+function displayMessage(type, message) {
+    msg.attr("class", type);
+    msg.text(message);
+  }
+
+function showHighScores() {
+let scoreDisplay = localStorage.getItem("highScore");
+let initialsDisplay = localStorage.getItem("initials");
+displayHighScore.text(` ${initialsDisplay} : ${displayHighScore} `);
+}
+
+restartButton.on("click", function(event){
+    questionsDiv.show();
+    resultsDiv.hide();
+    highScoresDiv.hide();
+    gameStartDiv.hide();
+    secondsLeft=60;
+    score=0;
+    questionIndex = 0;
+    startTimer();
+    setNextQuestion();
+
+});
+
+viewHighScore.on("click", function(event){
+    console.log("hello");
+    showHighScores()
+});
+
+
