@@ -15,10 +15,10 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#" id="viewHighScore">View High Score</a>
+    <a class="navbar-brand" href="#" id="viewHighScore"></a>
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarText">
-      <ul class="nav justify-content-end"id="timer">
+      <ul class="nav justify-content-end" id="timer">
         <li class="nav-item">
           Time left:
         </li>
@@ -26,50 +26,7 @@
       </ul>
     </div>
   </nav>
-  <!-- on page load: 
-    show game start screen
-    include how to play instructions
-    add start quiz button
-    
-  on start button click:
-    hide game-start div 
-    show questions div
-    show question
-    start timer
-  on answer selection:
-    check to see if answer is correct
-    if correct:
-      display success message
-      add to score
-      show next question
-    if incorrect:
-      display fail message
-      deduct time from timer
-      show next question
-  for game end:
-    if all the questions have been answered:
-      display score
-      prompt to save initials and results
-      on save:
-        record results in local storage
-    if time runs out:
-      display score
-      prompt to try again
-*/
-/*
-  functions:
-    startGame()
-    resetGame()
-    endGame()
-    restartGame()
-    startTimer()
-    decrementTimer()
-    renderQuestion()
-    checkAnswer()
-    saveScore()
-    clearScores()
-    toggleScores()
-*/ -->
+
   <div class="container">
     <!-- Game start div displaying the game instructions and start button -->
     <div class="jumbotron" id="gameStartDiv">
@@ -83,59 +40,43 @@
     <!-- Questions Div displaying question title and answer choices -->
     <div class="jumbotron" id="questionsDiv">
       <!-- question title Div -->
-
       <div>
         <h2 id="title"></h2>
-        <li><button class ="choiceButton" id="choiceButton1"></button></li>
-        <li><button class ="choiceButton" id="choiceButton2"></button></li>
-        <li><button class ="choiceButton" id="choiceButton3"></button></li>
-        <li><button class ="choiceButton" id="choiceButton4"></button></li>
+        <li><button class="choiceButton" id="choiceButton1"></button></li>
+        <li><button class="choiceButton" id="choiceButton2"></button></li>
+        <li><button class="choiceButton" id="choiceButton3"></button></li>
+        <li><button class="choiceButton" id="choiceButton4"></button></li>
       </div>
-
-      <!-- answer choices div -->
-      <div id="answerChoices"></div>
-     
-      
     </div>
 
-    <!-- Results Display -->
+    <!-- Results Display and User Initials submission-->
     <div class="jumbotron" id="resultsDiv">
-
-
       <h2 id="done">All done!</h2>
       <h3 id="totalScore"></h3>
-      
-    
       <form>
         <div class="row">
           <div class="col-md-2">
-            
+
             <label for="initials">Enter initials</label>
-            <input type="text" name="initials" id="initialsInput" placeholder="AB" />
+            <input type="text" name="initials" id="initialsInput" placeholder="" />
           </div>
         </div>
-        <button type="submit" id = "submit" class="btn btn-primary">Submit</button>
+        <button type="submit" id="submit" class="btn btn-primary">Submit</button>
         <div id="msg"></div>
       </form>
     </div>
 
     <!-- High scores Display -->
     <div class="jumbotron" id="highScoresDiv">
-
       <h2 id="done">High Scores</h2>
       <div id="displayHighScore"></div>
-      
-        <p><strong> <span id="user-initials-score"></span><strong></p>
-     
+      <p><strong> <span id="user-initials-score"></span><strong></p>
       <button class="btn btn-primary" id="highScoresBtn">view High Scores</button>
-      <button class="btn btn-secondary">Clear Highscores</button>
+      <button class="btn btn-secondary" id="clearHighScores">Clear Highscores</button>
       <button class="btn btn-info" id="restartButton">Restart Quiz</button>
-
     </div>
   </div>
 
-
-  <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

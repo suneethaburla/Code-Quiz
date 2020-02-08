@@ -1,17 +1,14 @@
 body {
     padding:0;
     margin:0;
-font-family: Verdana, Geneva, Tahoma, sans-serif;
-background-color: aliceblue;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: aliceblue;
+    background-image: url("../images/codeQuiz.jpg");
 }
 #gameStartDiv {
-    
-    margin: 20px;
+    margin: 60px;
 }
-#questionsDiv {
-    box-shadow: 0 0 5px 1px;
-    margin: 20px;
-}
+
 .btn {
     margin: 10px;
 }
@@ -34,4 +31,10 @@ background-color: aliceblue;
   }
   #time {
       margin-top: 5px;
+  }
+
+  #questionsDiv, #resultsDiv, #highScoresDiv {
+    box-shadow: 0 0 5px 1px;
+    margin: 60px;
+    background-color:lightblue;
   }

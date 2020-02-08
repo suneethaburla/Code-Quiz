@@ -1,6 +1,5 @@
 
 //create all the elements
-let viewHighScore = $("#viewHighScore");
 let gameStartDiv = $("#gameStartDiv");
 let welcome = $("#welcome");
 let instructions = $("#instructions");
@@ -20,6 +19,7 @@ let totalScore = $("#totalScore");
 let highScoresDiv = $("#highScoresDiv");
 let displayFinalScore = $("#displayHighScore");
 let highScoresBtn = $("#highScoresBtn");
+let clearHighScores = $("#clearHighScores");
 let initialsInput = $("#initialsInput");
 let userInitialsScoreSpan = $("#user-initials-score");
 let submitButton = $("#submit");
@@ -27,10 +27,8 @@ let msg = $("#msg");
 let restartButton = $("#restartButton");
 let timer = $("#timer");
 
-
 // Initializing the variables
 let score;
-
 let secondsLeft;
 let highScore;
 let questionIndex;
@@ -56,7 +54,7 @@ function startQuiz() {
     resultsDiv.hide();
     highScoresDiv.hide();
     gameStartDiv.hide();
-    secondsLeft = 10;
+    secondsLeft = 60;
     score = 0;
     timeTaken = 0;
     questionIndex = 0;
@@ -67,30 +65,24 @@ function startQuiz() {
 //Start Timer function
 function startTimer() {
     let timerInterval = setInterval(function () {
-
-
         secondsLeft--;
         time.text(secondsLeft);
         timeTaken++
-
         if (secondsLeft < 0) {
             clearInterval(timerInterval);
             endGame();
         }
-
     }, 1000);
 }
 
 //Decrement Timer function for choosing wrong answer
 function decrementTimer() {
     secondsLeft = secondsLeft - 5;
-
 }
 //stop Timer function when the game ends soner than the given time
 function stopTimer() {
     secondsLeft = 0;
     time.text(secondsLeft);
-
 }
 //render next question
 function setNextQuestion() {
@@ -103,7 +95,6 @@ function showQuestion(question) {
     choiceButton2.text(question.choices[1]);
     choiceButton3.text(question.choices[2]);
     choiceButton4.text(question.choices[3]);
-
 }
 //function to call when user chooses one of the choices
 choiceButton.on("click", function () {
@@ -139,17 +130,22 @@ function endGame() {
     timer.hide();
     stopTimer();
     totalScore.text(`You answered ${score} out of ${totQuestions} correct in ${timeTaken - 1} seconds`);
-
 }
 //Message to display when submit button is clicked
 function displayMessage(type, message) {
     msg.attr("class", type);
     msg.text(message);
+    console.log(type);
 }
 
 //function to run after user enters initials and submits the results
 submitButton.on("click", function (event) {
     event.preventDefault();
+    showHighScores()
+});
+
+//Message to display high scores of all initials submitted
+function showHighScores() {
     let user = {
         initials:jQuery.trim(initialsInput.val()),
         score:score,
@@ -161,9 +157,7 @@ submitButton.on("click", function (event) {
     } else {
         displayMessage("success", "Thank you for taking the quiz!");
         // Save initials and score to localStorage and render the last initials and score.
-        
         localStorage.setItem("user", JSON.stringify(user));
-
         // get most recent submission
         var lastUser = localStorage.getItem("user");
         lastUser = JSON.parse(lastUser);
@@ -174,21 +168,21 @@ submitButton.on("click", function (event) {
     resultsDiv.hide();
     questionsDiv.hide();
     gameStartDiv.hide();
-});
-
-//Message to display high scores of all initials submitted
-function showHighScores() {
-    let scoreDisplay = localStorage.getItem("score");
-    let initialsDisplay = localStorage.getItem("initials");
-    displayFinalScore.text(` ${initialsDisplay} : ${displayFinalScore} `);
 }
+// Clear Score function
+
+function clearScore (){
+    localStorage.clear();
+    userInitialsScoreSpan.text("");
+}
+
 //Start quiz from the beginning when Restart button is clicked
 restartButton.on("click", function (event) {
     startQuiz()
 });
 //Show High Scores when View High Score link in nav bar is clicked
-viewHighScore.on("click", function (event) {
-    showHighScores()
+clearHighScores.on("click", function (event) {
+    clearScore()
 });
 //Show High Scores when View High scores button is clicked
 highScoresBtn.on("click", function (event) {
