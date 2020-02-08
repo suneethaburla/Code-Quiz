@@ -14,20 +14,13 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#" id="viewHighScore"></a>
 
-    <div class="collapse navbar-collapse justify-content-end" id="navbarText">
-      <ul class="nav justify-content-end" id="timer">
-        <li class="nav-item">
-          Time left:
-        </li>
-        <span id="time"></span>
-      </ul>
-    </div>
+  <nav class="navbar navbar-light bg-light" id="timer">
+    <span class="navbar-brand mb-0 h1" id ="time"></span>
   </nav>
+  
 
-  <div class="container">
+  <div class="container-sm">
     <!-- Game start div displaying the game instructions and start button -->
     <div class="jumbotron" id="gameStartDiv">
       <h1 class="display-4" id="welcome">Welcome to Code Quiz!</h1>
@@ -72,7 +65,7 @@
       <div id="displayHighScore"></div>
       <p><strong> <span id="user-initials-score"></span><strong></p>
       <button class="btn btn-primary" id="highScoresBtn">view High Scores</button>
-      <button class="btn btn-secondary" id="clearHighScores">Clear Highscores</button>
+      <button class="btn btn-secondary" id="clearHighScores">Clear High Scores</button>
       <button class="btn btn-info" id="restartButton">Restart Quiz</button>
     </div>
   </div>

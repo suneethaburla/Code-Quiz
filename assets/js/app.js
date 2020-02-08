@@ -49,6 +49,7 @@ startButton.click(function () {
 });
 // start the Quiz
 function startQuiz() {
+    startTimer();
     questionsDiv.show();
     timer.show();
     resultsDiv.hide();
@@ -58,7 +59,6 @@ function startQuiz() {
     score = 0;
     timeTaken = 0;
     questionIndex = 0;
-    startTimer();
     setNextQuestion();
 }
 
@@ -66,8 +66,8 @@ function startQuiz() {
 function startTimer() {
     let timerInterval = setInterval(function () {
         secondsLeft--;
-        time.text(secondsLeft);
-        timeTaken++
+        time.text(`Time left: ${secondsLeft}`);
+        timeTaken++;
         if (secondsLeft < 0) {
             clearInterval(timerInterval);
             endGame();
