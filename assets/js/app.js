@@ -20,7 +20,7 @@ let highScoresDiv = $("#highScoresDiv");
 let displayFinalScore = $("#displayHighScore");
 let highScoresBtn = $("#highScoresBtn");
 let clearHighScores = $("#clearHighScores");
-let initialsInput = $("#initialsInput");
+
 let userInitialsScoreSpan = $("#user-initials-score");
 let submitButton = $("#submit");
 let msg = $("#msg");
@@ -136,6 +136,8 @@ function displayMessage(type, message) {
     msg.attr("class", type);
     msg.text(message);
     console.log(type);
+    
+    console.log("-------");
 }
 
 //function to run after user enters initials and submits the results
@@ -145,17 +147,16 @@ submitButton.on("click", function (event) {
 });
 
 //Message to display high scores of all initials submitted
-function showHighScores() {
+function showHighScores() {  
+    highScoresDiv.show();
+    resultsDiv.hide();
+    questionsDiv.hide();
+    gameStartDiv.hide();  
+    let initialsInput = $("#initialsInput");
     let user = {
         initials:jQuery.trim(initialsInput.val()),
-        score:score,
+        score,
     };
-
-    if (initialsInput === "") {
-        displayMessage("error", "Initials cannot be blank");
-        resultsDiv.show();
-    } else {
-        displayMessage("success", "Thank you for taking the quiz!");
         // Save initials and score to localStorage and render the last initials and score.
         localStorage.setItem("user", JSON.stringify(user));
         // get most recent submission
@@ -164,11 +165,7 @@ function showHighScores() {
         console.log(lastUser);
         userInitialsScoreSpan.text(` ${lastUser.initials} : ${lastUser.score} `);
     }
-    highScoresDiv.show();
-    resultsDiv.hide();
-    questionsDiv.hide();
-    gameStartDiv.hide();
-}
+
 // Clear Score function
 
 function clearScore (){
@@ -182,7 +179,7 @@ restartButton.on("click", function (event) {
 });
 //Show High Scores when View High Score link in nav bar is clicked
 clearHighScores.on("click", function (event) {
-    clearScore()
+    clearScore();
 });
 //Show High Scores when View High scores button is clicked
 highScoresBtn.on("click", function (event) {
