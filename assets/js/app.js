@@ -20,7 +20,6 @@ let highScoresDiv = $("#highScoresDiv");
 let displayFinalScore = $("#displayHighScore");
 let highScoresBtn = $("#highScoresBtn");
 let clearHighScores = $("#clearHighScores");
-
 let userInitialsScoreSpan = $("#user-initials-score");
 let submitButton = $("#submit");
 let msg = $("#msg");
@@ -135,9 +134,6 @@ function endGame() {
 function displayMessage(type, message) {
     msg.attr("class", type);
     msg.text(message);
-    console.log(type);
-    
-    console.log("-------");
 }
 
 //function to run after user enters initials and submits the results
@@ -162,7 +158,6 @@ function showHighScores() {
         // get most recent submission
         var lastUser = localStorage.getItem("user");
         lastUser = JSON.parse(lastUser);
-        console.log(lastUser);
         userInitialsScoreSpan.text(` ${lastUser.initials} : ${lastUser.score} `);
     }
 
