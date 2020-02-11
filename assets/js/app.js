@@ -19,6 +19,7 @@ let totalScore = $("#totalScore");
 let highScoresDiv = $("#highScoresDiv");
 let displayFinalScore = $("#displayHighScore");
 let highScoresBtn = $("#highScoresBtn");
+let goBackButton = $("#goBackBtn");
 let clearHighScores = $("#clearHighScores");
 let userInitialsScoreSpan = $("#user-initials-score");
 let submitButton = $("#submit");
@@ -35,12 +36,16 @@ let totQuestions = questions.length;
 
 // On load function, hide all the divs and show gameStart Div
 window.addEventListener("load", function () {
+    landingPage()
+});
+//landing page
+function landingPage () {
     questionsDiv.hide();
     resultsDiv.hide();
     highScoresDiv.hide();
     gameStartDiv.show();
     timer.hide();
-});
+};
 
 // click the start quiz button
 startButton.click(function () {
@@ -179,5 +184,9 @@ clearHighScores.on("click", function (event) {
 //Show High Scores when View High scores button is clicked
 highScoresBtn.on("click", function (event) {
     showHighScores()
+});
+
+goBackButton.on("click", function (event) {
+    landingPage();
 });
 
