@@ -14,6 +14,8 @@ let choiceButton3 = $("#choiceButton3");
 let choiceButton4 = $("#choiceButton4");
 let answerChoices = $("#answerChoices");
 let choiceButton = $(".choiceButton");
+let verdict = $("#verdict");
+let verdictWord = $("#verdict_word");
 let resultsDiv = $("#resultsDiv");
 let totalScore = $("#totalScore");
 let highScoresDiv = $("#highScoresDiv");
@@ -39,7 +41,7 @@ window.addEventListener("load", function () {
     landingPage()
 });
 //landing page
-function landingPage () {
+function landingPage() {
     questionsDiv.hide();
     resultsDiv.hide();
     highScoresDiv.hide();
@@ -107,14 +109,21 @@ choiceButton.on("click", function () {
     checkAnswer();
 });
 
-//check if the user choice is correct or wrong
-function checkAnswer(timerInterval) {
+function verdictDisplay(word) {
+    verdictWord.text(word);
+    jQuery(verdict).css('opacity', '1.0');
+    setTimeout(function () {
+        jQuery(verdict).css('opacity', '0');
+    }, 1000);
+}
+
+function checkAnswer() {
     if (userChoice === questions[questionIndex].answer) {
-        alert("correct");
+        verdictDisplay("correct!");
         score++
     }
     else {
-        alert("wrong");
+        verdictDisplay("wrong!");
         decrementTimer();
     }
     questionIndex++
@@ -125,6 +134,7 @@ function checkAnswer(timerInterval) {
         endGame();
     }
 }
+
 //End game once all questions are answered or if time runs out
 function endGame() {
     questionsDiv.hide();
@@ -148,27 +158,27 @@ submitButton.on("click", function (event) {
 });
 
 //Message to display high scores of all initials submitted
-function showHighScores() {  
+function showHighScores() {
     highScoresDiv.show();
     resultsDiv.hide();
     questionsDiv.hide();
-    gameStartDiv.hide();  
+    gameStartDiv.hide();
     let initialsInput = $("#initialsInput");
     let user = {
-        initials:jQuery.trim(initialsInput.val()),
+        initials: jQuery.trim(initialsInput.val()),
         score,
     };
-        // Save initials and score to localStorage and render the last initials and score.
-        localStorage.setItem("user", JSON.stringify(user));
-        // get most recent submission
-        var lastUser = localStorage.getItem("user");
-        lastUser = JSON.parse(lastUser);
-        userInitialsScoreSpan.text(` ${lastUser.initials} : ${lastUser.score} `);
-    }
+    // Save initials and score to localStorage and render the last initials and score.
+    localStorage.setItem("user", JSON.stringify(user));
+    // get most recent submission
+    var lastUser = localStorage.getItem("user");
+    lastUser = JSON.parse(lastUser);
+    userInitialsScoreSpan.text(` ${lastUser.initials} : ${lastUser.score} `);
+}
 
 // Clear Score function
 
-function clearScore (){
+function clearScore() {
     localStorage.clear();
     userInitialsScoreSpan.text("");
 }
